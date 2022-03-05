@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrew Chen</title>
+  <link rel="stylesheet" target="_blank" rel="noopener noreferrer" href="styles.css">
+</head>
+
+<body>
+  <main>
+    <div id="personal-info">
+      <h1>Andrew Chen</h1>
+      <table>
+        <tr>
+          <td>andrewchen0028@gmail.com</td>
+          <td><a target="_blank" rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/andrewchen0028">LinkedIn</a></td>
+        </tr>
+        <tr>
+          <td>(862)-216-5852</td>
+          <td><a target="_blank" rel="noopener noreferrer" href="https://www.github.com/andrewchen0028">Github</a></td>
+        </tr>
+      </table>
+    </div>
+    <hr>
+    <div id="education">
+      <h2>Education</h2>
+      <table>
+        <tr>
+          <td>Purdue University (GPA: 3.8/4.0)</td>
+          <td>West Lafayette, IN</td>
+        </tr>
+        <tr>
+          <td>B.S. Aero/Astro Engineering</td>
+          <td>Graduating May 2023</td>
+        </tr>
+      </table>
+    </div>
+    <hr>
+    <div id="experience">
+      <h2>Experience</h2>
+
+
+      <div class="experience-item" id="skydio">
+        <table class="experience-header">
+          <tr>
+            <td>
+              <h3>Skydio - Autonomy & Control Internship</h3>
+            </td>
+            <td>
+              Summer 2021
+            </td>
+          </tr>
+        </table>
+        <p id="skydio-summary">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.skydio.com">Skydio</a> is the premier U.S.
+          drone manufacturer and creates the most advanced autonomous drones in the world.
+          I
+          added two modules to Skydio's internal simulation stack, which is used for testing software before hardware
+          integration. Both modules were written in Python and C++.
+        </p>
+        <ul id="skydio-details">
+          <li id="skydio-collisions">
+            <p>
+              The first module adds collision physics for simulated objects. We wanted this functionality to be able
+              to
+              test scenarios with the vehicle taking off from and landing on raised platforms. This module involed
+              algebraic operations on signed distance functions, as described on <a target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm">Inigo Quilez's
+                site</a>.
+              The collision force vector itself was modeled using simple mass-spring damper dynamics.
+            </p>
+          </li>
+          <li id="skydio-drift">
+            <p>
+              The second module enables simulation of sensor drift in flight. Skydio drones use a suite of six cameras
+              for <a target="_blank" rel="noopener noreferrer"
+                href="https://en.wikipedia.org/wiki/Visual_odometry#Visual_inertial_odometry">visual-inertial
+                odometry</a>, which becomes prone to sensor drift when factors such as high altitude or rapid motion
+              degrade the accuracy of the vehicle pose estimate. My module allows for granular spoofing of sensor
+              drift
+              in the simulator: the user can choose any combination of pseudorandom or user-supplied drift vectors,
+              and
+              set drift sensitivity to each of the factors which influence drift severity in real life.
+            </p>
+          </li>
+        </ul>
+        <figure>
+          <video src="./skydio.mp4" alt="simulator showing faulty collision behavior" id="skydio-video"></video>
+          <figcaption>I added functionality for contact forces with internal surfaces of concave objects, fixing issues like this which came up as we used our simulator for more and more complex scenarios</figcaption>
+        </figure>
+      </div>
+
+      
+      <div class="experience-item" id="gfold">
+        <table class="experience-header">
+          <tr>
+            <td>
+              <h3>Propulsive Landing Guidance Project</h3>
+            </td>
+            <td>
+              Spring-Fall 2020
+            </td>
+          </tr>
+        </table>
+        <p>
+          During quarantine, I worked with two classmates to implement a variant of the G-FOLD propulsive landing
+          guidance algorithm in Python, based on <a target="_blank" rel="noopener noreferrer"
+            href="http://larsblackmore.com/iee_tcst13.pdf">"Lossless Convexification
+            of Nonconvex Control Bound
+            and Pointing Constraints of the Soft Landing Optimal Control Problem"</a> (Aç&#305kmeşe et. al.).
+        </p>
+        <div id="gfold-video">
+          <iframe width="640" height="270" src="https://www.youtube.com/embed/mvvMpNAnOws" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <ul>
+          <li>Heavily-modified build of Kerbal Space Program flight simulator, running <a target="_blank"
+              rel="noopener noreferrer" href="https://krpc.github.io/krpc/">kRPC</a> mod to control a 1:1 model of a
+            Spacex Grasshopper using external code.</li>
+          <li>Vehicle is manually piloted to 300m AGL with slight pitch offset from vertical.</li>
+          <li><a target="_blank" rel="noopener noreferrer"
+              href="https://github.com/Planetary-Soft-Landing-at-Purdue/PSL-with-KSP">Python script</a> takes
+            full control at ~40sec, uses <a target="_blank" rel="noopener noreferrer"
+              href="https://web.stanford.edu/~boyd/papers/ecos.html">ECOS embedded
+              SOCP solver</a> to generate thrust vectors for fuel-optimal landing.</li>
+        </ul>
+      </div>
+      <div class="experience-item" id="draper">
+        <table class="experience-header">
+          <tr>
+            <td>
+              <h3>Draper Laboratory: Flight Software Validation Internship</h3>
+            </td>
+            <td>
+              Summer 2020
+            </td>
+          </tr>
+        </table>
+        <p>
+          I created parallelized anomaly detection tools for Sierra Nevada's Dream Chaser spacecraft. These tools were
+          written in MATLAB to scan over 50GB of data from Monte Carlo simulations and hardware-in-loop telemetry,
+          with user-configurable thresholds on error magnitude and duration to identify anomalous data.
+        </p>
+      </div>
+      <div class="experience-item" id="nasa">
+        <table class="experience-header">
+          <tr>
+            <td>
+              <h3>NASA Langley Research Center: Rapid Prototyping Internship</h3>
+            </td>
+            <td>
+              Summer 2019
+            </td>
+          </tr>
+        </table>
+        <p>
+          I took on various hardware tasks at the LaRC machine shop and makerspace, including 3D printing, CNC, and CAD.
+          My primary project was creating prototypes for the <a target="_blank" rel="noopener noreferrer"
+            href="https://www.nasa.gov/directorates/spacetech/small_spacecraft/ACS3">Advanced Composite Solar Sail
+            System</a>, a 12U CubeSat designed to test a solar sail using a novel carbon-fiber boom configuration.
+        </p>
+        <p>
+          During this time I also co-lead my high school's team in the first NASA App Development Challenge. Our team
+          won out of over thirty teams in the country, by developing a real-time telementry visualizer for the Orion
+          Ascent Abort-2 mission. This visualizer took over 25,000 quaternion data points from Orion's flight data
+          recorders and returned a video playback of the flight.
+        </p>
+      </div>
+    </div>
+    <hr>
+    <div id="honors-and-awards">
+      <h2>Honors and Awards</h2>
+      <table>
+        <tr>
+          <td>Northrop Grumman AAE 251 Award:</td>
+          <td>best-in-class design proposal by unanimous vote</td>
+        </tr>
+        <tr>
+          <td>Purdue Dean's List & Semester Honors:</td>
+          <td>all semesters to date</td>
+        </tr>
+        <tr>
+          <td>NASA App Development Challenge, 2019:</td>
+          <td>winning team out of 30+ in the U.S.</td>
+        </tr>
+        <tr>
+          <td>PhysicsBowl Competition, 2018:</td>
+          <td>top one percent in the world</td>
+        </tr>
+      </table>
+    </div>
+    <hr>
+    <div id="gallery">
+      <h2>Images that might be interesting</h2>
+      <figure>
+        <img src="./rrt.png" alt="RRT screenshot" id="gallery-rrt">
+        <figcaption>
+          Rapidly-exploring random tree algorithm I programmed in C++ as part of an undergraduate drone research project, visualized in MATLAB. Here the algorithm is plotting a path in 3D from the green start point to the red end point, while avoiding the obstalces (blue spheres).
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="./tarc.png" alt="TARC rocket" id="gallery-tarc">
+        <figcaption>
+          A rocket I designed and component-tested in high school for the Team America Rocketry Challenge. The objective of this competition was to match a target apogee and flight time, and at the time the competition was capped by luck via the variance inherent in hobbyist solid rocket motors. My goal with this design was to create an electromechanical parachute deployment and reefing mechanism, which coupled with a compact altimeter would allow us to hit the target apogee and flight time perfectly on every attempt. I graduated before this rocket could be fully deployed.
+        </figcaption>
+      </figure>
+    </div>
+  </main>
+</body>
+
+</html>
